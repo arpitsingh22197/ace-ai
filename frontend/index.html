@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="theme.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="InterviewAce AI - secure interview questions chatbot with local authentication." />
+    <title>InterviewAce AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background">
+      <span class="glow glow-a"></span>
+      <span class="glow glow-b"></span>
+    </div>
+
+    <main id="authView" class="auth-view">
+      <section class="auth-shell">
+        <div class="hero-panel">
+          <div class="brand-pill">
+            <span></span>
+            InterviewAce AI
+          </div>
+          <h1>Practice interview questions with a focused <span class="hl">AI coach</span>.</h1>
+          <p>
+              Master Technical Interviews with AI-Powered Questions, Detailed Explanations, Coding Challenges, and Mock Interview Practice.
+          </p>
+          <div class="feature-grid">
+            <div>
+              <strong>Mock interviews</strong>
+              <small>Role-based practice</small>
+            </div>
+            <div>
+              <strong>Answer review</strong>
+              <small>Score and improve</small>
+            </div>
+            <div>
+              <strong>Saved sessions</strong>
+              <small>Stored locally</small>
+            </div>
+          </div>
+        </div>
+
+        <form id="authForm" class="auth-card">
+          <div class="auth-card-header">
+            <div>
+              <small>Welcome</small>
+              <h2 id="authTitle">Create account</h2>
+            </div>
+            <div class="header-actions">
+              <button id="toggleAuth" type="button">Sign in</button>
+              <button class="icon-btn theme-toggle" type="button" aria-label="Toggle day and night mode" title="Toggle theme">
+                <svg class="icon-moon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.6A9 9 0 1 1 11.4 3 7 7 0 0 0 21 12.6Z" />
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4.2" />
+                  <path d="M12 2.5v2.6M12 18.9v2.6M4.2 4.2l1.85 1.85M17.95 17.95l1.85 1.85M2.5 12h2.6M18.9 12h2.6M4.2 19.8l1.85-1.85M17.95 6.05l1.85-1.85" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <label id="nameWrap">
+            Name
+            <input id="nameInput" type="text" placeholder="Your name" />
+          </label>
+          <label>
+            Email
+            <input id="emailInput" type="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Password
+            <input id="passwordInput" type="password" placeholder="Minimum 8 characters" minlength="8" required />
+          </label>
+          <button class="primary-btn" type="submit">Continue</button>
+          <p class="form-note"></p>
+        </form>
+      </section>
+    </main>
+
+    <main id="appView" class="app-view hidden">
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div>
+            <strong>InterviewAce AI</strong>
+            <small>Question practice lab</small>
+          </div>
+          <div class="header-actions">
+            <button id="newSessionBtn" class="icon-btn">+</button>
+            <button class="icon-btn theme-toggle" type="button" aria-label="Toggle day and night mode" title="Toggle theme">
+              <svg class="icon-moon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.6A9 9 0 1 1 11.4 3 7 7 0 0 0 21 12.6Z" />
+              </svg>
+              <svg class="icon-sun" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4.2" />
+                <path d="M12 2.5v2.6M12 18.9v2.6M4.2 4.2l1.85 1.85M17.95 17.95l1.85 1.85M2.5 12h2.6M18.9 12h2.6M4.2 19.8l1.85-1.85M17.95 6.05l1.85-1.85" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <input id="sessionSearch" class="search" type="search" placeholder="Search sessions" />
+        <div id="sessionList" class="session-list"></div>
+
+        <div class="profile">
+          <div id="avatar" class="avatar"></div>
+          <div>
+            <strong id="profileName"></strong>
+            <small id="profileEmail"></small>
+          </div>
+        </div>
+        <button id="logoutBtn" class="secondary-btn">Log out</button>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <h2 id="sessionTitle">Interview Practice</h2>
+            <p>Choose a mode, target role, and practice like a real candidate.</p>
+          </div>
+          <div class="topbar-actions">
+            <button id="exportBtn" class="secondary-btn">Export</button>
+            <button id="clearBtn" class="secondary-btn">Clear</button>
+          </div>
+        </header>
+
+        <section class="control-strip">
+          <label>
+            Target role
+            <input id="roleInput" type="text" value="Frontend Developer" />
+          </label>
+          <label>
+            Level
+            <select id="levelInput">
+              <option>Beginner</option>
+              <option selected>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </label>
+          <label>
+            Mode
+            <select id="modeInput">
+              <option selected>Mock Interview</option>
+              <option>Question Bank</option>
+              <option>Answer Review</option>
+              <option>Roadmap</option>
+            </select>
+          </label>
+        </section>
+
+        <div id="messages" class="messages">
+          <section id="emptyState" class="empty-state">
+            <div class="spark">✦</div>
+            <h1>Ready for your next interview?</h1>
+            <p>Start with a question bank, paste an answer for review, or begin a mock interview.</p>
+            <div class="starter-grid">
+              <button data-prompt="Ask me 5 frontend interview questions one by one.">Start mock interview</button>
+              <button data-prompt="Create 20 JavaScript interview questions with answers.">Question bank</button>
+              <button data-prompt="Review this answer and tell me how to improve it:">Review my answer</button>
+            </div>
+          </section>
+        </div>
+
+        <form id="chatForm" class="composer">
+          <textarea id="messageInput" rows="1" placeholder="Type your interview request..."></textarea>
+          <button id="sendBtn" class="primary-btn" type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
